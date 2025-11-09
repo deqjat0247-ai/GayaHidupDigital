@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaya Hidup Digital - Pembelajaran Interaktif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === CSS LENGKAP === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --warning-color: #ffcc00;
+            --danger-color: #dc3545;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigasi */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .nav-logo i {
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .dark-section {
+            background-color: #f1f3f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .card-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .content-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .content-text ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .content-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: opacity 0.3s ease;
+        }
+
+        .play-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== BAHAGIAN CABARAN DIGITAL ===== */
+        .challenges-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .challenge-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .challenge-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .challenge-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .challenge-stats {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .challenge-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .challenge-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Solutions Panel */
+        .solutions-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .solution-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .solution-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .close-btn:hover {
+            background: #c82333;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        /* Interactive Document */
+        .interactive-doc {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .doc-preview {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .doc-icon {
+            font-size: 4rem;
+            color: var(--danger-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-preview h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .doc-button {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .doc-button:hover {
+            background-color: #c82333;
+        }
+
+        .doc-features h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .doc-features ul {
+            list-style: none;
+        }
+
+        .doc-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .doc-features i {
+            color: var(--success-color);
+            margin-right: 10px;
+        }
+
+        /* Quiz */
+        .quiz-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-intro {
+            text-align: center;
+        }
+
+        .quiz-intro p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .quiz-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-questions {
+            text-align: left;
+        }
+
+        .question h3 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .option {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .quiz-nav-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-nav-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-results {
+            text-align: center;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .audio-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .audio-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-grid,
+            .interactive-doc {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .nav-toggle.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .challenges-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .challenge-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            padding: 0;
+            z-index: 1001;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #dc3545;
+        }
+
+        .modal h2 {
+            color: #3a0ca3;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4361ee;
+        }
+
+        .modal-section h3 {
+            color: #4361ee;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .modal-section li:last-child {
+            border-bottom: none;
+        }
+
+        .modal-section strong {
+            color: #3a0ca3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigasi -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2><i class="fas fa-laptop-code"></i> Gaya Hidup Digital</h2>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#beranda" class="nav-link">Laman Utama</a>
+                    <a href="#konsep" class="nav-link">Konsep</a>
+                    <a href="#keselamatan" class="nav-link">Keselamatan</a>
+                    <a href="#cabaran" class="nav-link">Cabaran</a>
+                    <a href="#interaktif" class="nav-link">Dokumen Interaktif</a>
+                    <a href="#kuiz" class="nav-link">Kuiz</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner & Hero Section -->
+    <section id="beranda" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Gaya Hidup Digital</h1>
+            <p class="hero-subtitle">Meneroka Teknologi dalam Kehidupan Harian</p>
+            <button class="cta-button" id="cta-button">Mulakan Perjalanan Digital</button>
+        </div>
+        <div class="hero-animation">
+            <div class="floating-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="floating-icon">
+                <i class="fas fa-wifi"></i>
+            </div>
+            <div class="floating-icon">
+                <i class="fas fa-cloud"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Konsep Gaya Hidup Digital -->
+    <section id="konsep" class="section">
+        <div class="container">
+            <h2 class="section-title">Konsep Gaya Hidup Digital</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Komunikasi Digital</h3>
+                    <p>Platform media sosial, aplikasi pesanan, dan alat kolaborasi dalam talian telah mengubah cara kita berinteraksi.</p>
+                    <button class="card-button" onclick="openModal('komunikasi-modal')">Ketahui Lebih Lanjut</button>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Dagang</h3>
+                    <p>Pembelian dan penjualan barangan serta perkhidmatan melalui platform digital seperti Shopee, Lazada, dan lain-lain.</p>
+                    <button class="card-button" onclick="openModal('edagang-modal')">Ketahui Lebih Lanjut</button>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Pembelajaran Digital</h3>
+                    <p>Platform pembelajaran dalam talian, video pendidikan, dan aplikasi pembelajaran interaktif.</p>
+                    <button class="card-button" onclick="openModal('pembelajaran-modal')">Ketahui Lebih Lanjut</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keselamatan Siber -->
+    <section id="keselamatan" class="section dark-section">
+        <div class="container">
+            <h2 class="section-title">Keselamatan Cyber</h2>
+            <div class="content-grid">
+                <div class="content-text">
+                    <h3>Melindungi Diri dalam Dunia Digital</h3>
+                    <p>Keselamatan siber adalah penting dalam era digital untuk melindungi maklumat peribadi dan kewangan kita daripada ancaman seperti:</p>
+                    <ul>
+                        <li>Penipuan dalam talian</li>
+                        <li>Kecurian identiti</li>
+                        <li>Serangan malware dan ransomware</li>
+                        <li>Penggodaman akaun media sosial</li>
+                    </ul>
+                    <p>Pelajari cara untuk melindungi diri anda dengan mengamalkan tabiat digital yang selamat.</p>
+                    <button class="info-button" onclick="openModal('keselamatan-modal')">Tips Keselamatan</button>
+                </div>
+                <div class="content-media">
+                    <div class="video-container">
+                        <video id="cyber-video" controls>
+                            <source src="assets/videos/intro.mp4" type="video/mp4">
+                            Pelayar anda tidak menyokong elemen video.
+                        </video>
+                        <div class="video-overlay">
+                            <button id="play-video" class="play-button">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cabaran Digital Section -->
+    <section id="cabaran" class="section">
+        <div class="container">
+            <h2 class="section-title">Cabaran Gaya Hidup Digital</h2>
+            <div class="challenges-container">
+                <div class="challenge-card">
+                    <div class="challenge-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Ketagihan Digital</h3>
+                    <p>Penggunaan peranti digital yang berlebihan boleh menyebabkan ketagihan dan menjejaskan kesihatan mental.</p>
+                    <div class="challenge-stats">
+                        <span class="stat">65%</span>
+                        <span class="stat-label">Remaja mengalami gejala ketagihan digital</span>
+                    </div>
+                    <button class="challenge-btn" onclick="showSolution(0)">Ketahui Penyelesaian</button>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Keselamatan Data</h3>
+                    <p>Kebocoran data peribadi dan penipuan dalam talian semakin meningkat setiap tahun.</p>
+                    <div class="challenge-stats">
+                        <span class="stat">47%</span>
+                        <span class="stat-label">Pengguna pernah menjadi mangsa penipuan digital</span>
+                    </div>
+                    <button class="challenge-btn" onclick="showSolution(1)">Ketahui Penyelesaian</button>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Imbangan Digital-Fizikal</h3>
+                    <p>Sukar untuk mengekalkan keseimbangan antara kehidupan digital dan interaksi fizikal.</p>
+                    <div class="challenge-stats">
+                        <span class="stat">72%</span>
+                        <span class="stat-label">Merasa sukar untuk 'detox' digital</span>
+                    </div>
+                    <button class="challenge-btn" onclick="showSolution(2)">Ketahui Penyelesaian</button>
+                </div>
+            </div>
+            
+            <div class="solutions-panel" id="solutions-panel" style="display: none;">
+                <div class="solution-content">
+                    <h3 id="solution-title">Penyelesaian Cabaran Digital</h3>
+                    <div id="solution-desc">
+                        Pilih salah satu cabaran di atas untuk melihat penyelesaiannya.
+                    </div>
+                    <button class="close-btn" id="close-solution">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dokumen Interaktif -->
+    <section id="interaktif" class="section">
+        <div class="container">
+            <h2 class="section-title">Dokumen Interaktif</h2>
+            <div class="interactive-doc">
+                <div class="doc-preview">
+                    <div class="doc-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Panduan Gaya Hidup Digital</h3>
+                    <p>Dokumen interaktif ini mengandungi aktiviti pembelajaran, pautan multimedia, dan kuiz interaktif.</p>
+                    <button class="doc-button">Buka Dokumen</button>
+                </div>
+                <div class="doc-features">
+                    <h4>Ciri-ciri Dokumen:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Pautan ke video pembelajaran</li>
+                        <li><i class="fas fa-check"></i> Aktiviti interaktif</li>
+                        <li><i class="fas fa-check"></i> Kuiz pengetahuan</li>
+                        <li><i class="fas fa-check"></i> Gambar rajah interaktif</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kuiz Interaktif -->
+    <section id="kuiz" class="section dark-section">
+        <div class="container">
+            <h2 class="section-title">Kuiz Gaya Hidup Digital</h2>
+            <div class="quiz-container">
+                <div class="quiz-intro">
+                    <p>Uji pengetahuan anda tentang gaya hidup digital dengan kuiz interaktif ini.</p>
+                    <button id="start-quiz" class="quiz-button">Mulakan Kuiz</button>
+                </div>
+                <div class="quiz-questions" id="quiz-questions" style="display: none;">
+                    <div class="question">
+                        <h3 id="question-text">Soalan 1: Apakah yang dimaksudkan dengan "keselamatan siber"?</h3>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="option1" name="quiz" value="A">
+                                <label for="option1">Melindungi peranti dan data digital daripada ancaman</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="option2" name="quiz" value="B">
+                                <label for="option2">Menggunakan internet untuk berbelanja</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="option3" name="quiz" value="C">
+                                <label for="option3">Mempelajari cara menggunakan komputer</label>
+                            </div>
+                        </div>
+                        <button id="next-question" class="quiz-nav-button">Seterusnya</button>
+                    </div>
+                </div>
+                <div class="quiz-results" id="quiz-results" style="display: none;">
+                    <h3>Keputusan Kuiz</h3>
+                    <div class="score" id="score">Anda mendapat 0 daripada 3 soalan betul.</div>
+                    <button id="restart-quiz" class="quiz-button">Cuba Semula</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Player -->
+    <div class="audio-player">
+        <button id="audio-toggle" class="audio-button">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <audio id="background-audio" loop>
+            <source src="assets/audio/background.mp3" type="audio/mpeg">
+            Pelayar anda tidak menyokong elemen audio.
+        </audio>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gaya Hidup Digital</h3>
+                    <p>Laman web pembelajaran interaktif untuk pelajar sekolah menengah.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Pautan Pantas</h3>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#konsep">Konsep</a></li>
+                        <li><a href="#keselamatan">Keselamatan</a></li>
+                        <li><a href="#kuiz">Kuiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Hubungi Kami</h3>
+                    <p>Email: info@digitallearning.com</p>
+                    <p>Telefon: +603-1234 5678</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigitalLife Studio. Hak Cipta Terpelihara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MODAL UNTUK KETAHUI LEBIH LANJUT ===== -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="modal" id="komunikasi-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Komunikasi Digital</h2>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>📱 Platform Komunikasi Popular</h3>
+                    <ul>
+                        <li><strong>WhatsApp</strong> - Aplikasi pesanan segera paling banyak digunakan</li>
+                        <li><strong>Telegram</strong> - Fokus pada keselamatan dan group besar</li>
+                        <li><strong>Discord</strong> - Untuk komuniti gaming dan interest groups</li>
+                        <li><strong>Zoom/Meet</strong> - Platform video conference</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>💡 Kebaikan Komunikasi Digital</h3>
+                    <ul>
+                        <li>Pantas dan segera</li>
+                        <li>Boleh berkomunikasi secara global</li>
+                        <li>Kos yang rendah</li>
+                        <li>Berkongsi fail dan media dengan mudah</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>⚠️ Cabaran</h3>
+                    <ul>
+                        <li>Kurang interaksi bersemuka</li>
+                        <li>Risiko keselamatan data</li>
+                        <li>Ketagihan kepada peranti</li>
+                        <li>Miscommunication tanpa bahasa badan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="edagang-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>E-Dagang (E-Commerce)</h2>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>🛒 Platform E-Dagang di Malaysia</h3>
+                    <ul>
+                        <li><strong>Shopee</strong> - Marketplace terbesar di Malaysia</li>
+                        <li><strong>Lazada</strong> - Platform serantau dari Alibaba</li>
+                        <li><strong>Zalora</strong> - Fokus pada fesyen dan pakaian</li>
+                        <li><strong>PGMall</strong> - E-dagang tempatan Malaysia</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>💰 Trend E-Dagang 2024</h3>
+                    <ul>
+                        <li>Live shopping dan video commerce</li>
+                        <li>Pembayaran digital (DuitNow, e-wallet)</li>
+                        <li>AI recommendation untuk produk</li>
+                        <li>Sustainability dan produk mesra alam</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>🛡️ Tips Beli-belah Selamat</h3>
+                    <ul>
+                        <li>Baca review dan rating penjual</li>
+                        <li>Gunakan pembayaran yang selamat</li>
+                        <li>Semak polisi pulangan barang</li>
+                        <li>Jangan kongsi maklumat kad bank</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="pembelajaran-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Pembelajaran Digital</h2>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>🎓 Platform Pembelajaran Popular</h3>
+                    <ul>
+                        <li><strong>Google Classroom</strong> - Platform pembelajaran sekolah</li>
+                        <li><strong>Khan Academy</strong> - Pembelajaran percuma pelbagai subjek</li>
+                        <li><strong>Coursera/EdX</strong> - Kursus dari universiti ternama</li>
+                        <li><strong>YouTube Edu</strong> - Video pembelajaran percuma</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>🚀 Kebaikan Pembelajaran Digital</h3>
+                    <ul>
+                        <li>Akses kepada kandungan global</li>
+                        <li>Belajar mengikut kadar sendiri</li>
+                        <li>Kos yang lebih rendah</li>
+                        <li>Pelbagai format (video, quiz, interactive)</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>💡 Tips Belajar Berkesan</h3>
+                    <ul>
+                        <li>Tetapkan jadual belajar yang konsisten</li>
+                        <li>Gunakan teknik Pomodoro (25 min belajar, 5 min rehat)</li>
+                        <li>Buat nota digital yang teratur</li>
+                        <li>Libatkan diri dalam forum pembelajaran</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL TIPS KESELAMATAN ===== -->
+    <div class="modal" id="keselamatan-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Tips Keselamatan Digital</h2>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>🔐 Perlindungan Kata Laluan</h3>
+                    <ul>
+                        <li><strong>Gunakan kata laluan yang kuat</strong> - minimum 12 aksara dengan huruf besar/kecil, nombor dan simbol</li>
+                        <li><strong>Jangan guna semula kata laluan</strong> - guna kata laluan berbeza untuk setiap akaun</li>
+                        <li><strong>Gunakan pengurus kata laluan</strong> - seperti LastPass, Bitwarden, atau penyelesaian built-in browser</li>
+                        <li><strong>Aktifkan pengesahan dua faktor (2FA)</strong> - lapisan keselamatan tambahan</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>🛡️ Keselamatan Peranti</h3>
+                    <ul>
+                        <li><strong>Kemas kini perisian sentiasa</strong> - pastikan OS, browser dan apps sentiasa updated</li>
+                        <li><strong>Install antivirus/anti-malware</strong> - perlindungan real-time daripada ancaman</li>
+                        <li><strong>Backup data penting</strong> - simpan salinan data di cloud atau storage luar</li>
+                        <li><strong>Gunakan VPN pada Wi-Fi awam</strong> - encrypt sambungan internet anda</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>📱 Keselamatan Media Sosial</h3>
+                    <ul>
+                        <li><strong>Semak tetapan privasi</strong> - hadkan siapa boleh lihat profil dan post anda</li>
+                        <li><strong>Jangan kongsi maklumat sensitif</strong> - lokasi semasa, nombor kad, butiran peribadi</li>
+                        <li><strong>Waspada dengan phishing</strong> - jangan klik link mencurigakan dalam DM atau email</li>
+                        <li><strong>Log out dari peranti awam</strong> - pastikan anda log out selepas guna komputer awam</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>💳 Keselamatan Kewangan Digital</h3>
+                    <ul>
+                        <li><strong>Gunakan e-wallet yang disahkan</strong> - seperti Touch 'n Go, Boost, Maybank QRPay</li>
+                        <li><strong>Semak statement bank berkala</strong> - pantau transaksi mencurigakan</li>
+                        <li><strong>Jangan kongsi OTP</strong> - One-Time Password hanya untuk anda sahaja</li>
+                        <li><strong>Gunakan laman web rasmi</strong> - pastikan URL betul sebelum buat pembayaran</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== MODAL FUNCTIONALITY =====
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById('modal-overlay');
+            
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal');
+            const overlay = document.getElementById('modal-overlay');
+            
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+            
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners for modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButtons = document.querySelectorAll('.close-modal');
+            const overlay = document.getElementById('modal-overlay');
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', closeModal);
+            });
+            
+            overlay.addEventListener('click', closeModal);
+            
+            // Close modal with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // ===== SOLUTIONS PANEL =====
+            const solutionsPanel = document.getElementById('solutions-panel');
+            const solutionTitle = document.getElementById('solution-title');
+            const solutionDesc = document.getElementById('solution-desc');
+            const closeSolution = document.getElementById('close-solution');
+            
+            // Create overlay for solutions
+            let solutionsOverlay = document.createElement('div');
+            solutionsOverlay.className = 'overlay';
+            document.body.appendChild(solutionsOverlay);
+
+            const solutions = {
+                0: {
+                    title: "Mengatasi Ketagihan Digital",
+                    description: "1. Tetapkan had masa penggunaan peranti<br>2. Aktifkan pengingat rehat<br>3. Lakukan aktiviti luar tanpa peranti<br>4. Gunakan aplikasi pemantauan penggunaan<br>5. Amalkan 'digital detox' hujung minggu"
+                },
+                1: {
+                    title: "Meningkatkan Keselamatan Data",
+                    description: "1. Gunakan kata laluan yang kuat dan berbeza<br>2. Aktifkan pengesahan dua faktor<br>3. Kemas kini perisian secara berkala<br>4. Elakkan Wi-Fi awam tanpa VPN<br>5. Backup data penting secara berkala"
+                },
+                2: {
+                    title: "Mencapai Imbangan Digital-Fizikal",
+                    description: "1. Tetapkan zon bebas peranti di rumah<br>2. Utamakan interaksi bersemuka<br>3. Rancang aktiviti luar tanpa teknologi<br>4. Amalkan mindfulness dan meditasi<br>5. Tetapkan waktu 'shutdown' digital setiap hari"
+                }
+            };
+
+            window.showSolution = function(index) {
+                solutionTitle.textContent = solutions[index].title;
+                solutionDesc.innerHTML = solutions[index].description;
+                
+                solutionsPanel.style.display = 'block';
+                solutionsOverlay.style.display = 'block';
+            };
+
+            closeSolution.addEventListener('click', function() {
+                solutionsPanel.style.display = 'none';
+                solutionsOverlay.style.display = 'none';
+            });
+
+            solutionsOverlay.addEventListener('click', function() {
+                solutionsPanel.style.display = 'none';
+                this.style.display = 'none';
+            });
+
+            // ===== MOBILE NAVIGATION =====
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+            
+            // Close mobile menu when clicking on a nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            });
+
+            // ===== CTA BUTTON =====
+            const ctaButton = document.getElementById('cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function() {
+                    this.textContent = 'Teruskan Pembelajaran!';
+                    this.style.backgroundColor = '#4bb543';
+                    
+                    setTimeout(() => {
+                        document.getElementById('konsep').scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                });
+            }
+
+            // ===== VIDEO FUNCTIONALITY =====
+            const video = document.getElementById('cyber-video');
+            const playButton = document.getElementById('play-video');
+            const videoOverlay = document.querySelector('.video-overlay');
+            
+            if (playButton && video) {
+                playButton.addEventListener('click', function() {
+                    video.play();
+                    videoOverlay.style.display = 'none';
+                });
+                
+                video.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                        videoOverlay.style.display = 'none';
+                    } else {
+                        video.pause();
+                        videoOverlay.style.display = 'flex';
+                    }
+                });
+            }
+
+            // ===== QUIZ FUNCTIONALITY =====
+            const startQuizBtn = document.getElementById('start-quiz');
+            const quizIntro = document.querySelector('.quiz-intro');
+            const quizQuestions = document.getElementById('quiz-questions');
+            const quizResults = document.getElementById('quiz-results');
+            const nextQuestionBtn = document.getElementById('next-question');
+            const restartQuizBtn = document.getElementById('restart-quiz');
+            const scoreElement = document.getElementById('score');
+            
+            let currentQuestion = 0;
+            let score = 0;
+            
+            const questions = [
+                {
+                    question: "Apakah yang dimaksudkan dengan 'keselamatan siber'?",
+                    options: [
+                        "Melindungi peranti dan data digital daripada ancaman",
+                        "Menggunakan internet untuk berbelanja",
+                        "Mempelajari cara menggunakan komputer"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Manakah antara berikut BUKAN contoh gaya hidup digital?",
+                    options: [
+                        "Membeli-belah di pasaraya fizikal",
+                        "Menghadiri kelas dalam talian",
+                        "Berinteraksi dengan rakan melalui media sosial"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Apakah langkah penting untuk melindungi maklumat peribadi dalam talian?",
+                    options: [
+                        "Menggunakan kata laluan yang sama untuk semua akaun",
+                        "Membagikan maklumat peribadi dengan bebas",
+                        "Menggunakan kata laluan yang kuat dan berbeza untuk setiap akaun"
+                    ],
+                    correct: 2
+                }
+            ];
+            
+            if (startQuizBtn) {
+                startQuizBtn.addEventListener('click', function() {
+                    quizIntro.style.display = 'none';
+                    quizQuestions.style.display = 'block';
+                    showQuestion(currentQuestion);
+                });
+            }
+            
+            if (nextQuestionBtn) {
+                nextQuestionBtn.addEventListener('click', function() {
+                    // Check if an option is selected
+                    const selectedOption = document.querySelector('input[name="quiz"]:checked');
+                    if (!selectedOption) {
+                        alert('Sila pilih jawapan sebelum meneruskan.');
+                        return;
+                    }
+                    
+                    // Check if answer is correct
+                    if (parseInt(selectedOption.value) === questions[currentQuestion].correct) {
+                        score++;
+                    }
+                    
+                    // Move to next question or show results
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        showQuestion(currentQuestion);
+                    } else {
+                        showResults();
+                    }
+                });
+            }
+            
+            if (restartQuizBtn) {
+                restartQuizBtn.addEventListener('click', function() {
+                    currentQuestion = 0;
+                    score = 0;
+                    quizResults.style.display = 'none';
+                    quizIntro.style.display = 'block';
+                });
+            }
+            
+            function showQuestion(index) {
+                const questionText = document.getElementById('question-text');
+                const optionsContainer = document.querySelector('.options');
+                
+                questionText.textContent = `Soalan ${index + 1}: ${questions[index].question}`;
+                
+                // Clear previous options
+                optionsContainer.innerHTML = '';
+                
+                // Add new options
+                questions[index].options.forEach((option, i) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.id = `option${i+1}`;
+                    input.name = 'quiz';
+                    input.value = i;
+                    
+                    const label = document.createElement('label');
+                    label.htmlFor = `option${i+1}`;
+                    label.textContent = option;
+                    
+                    optionElement.appendChild(input);
+                    optionElement.appendChild(label);
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                // Update next button text for last question
+                if (index === questions.length - 1) {
+                    nextQuestionBtn.textContent = 'Selesai';
+                } else {
+                    nextQuestionBtn.textContent = 'Seterusnya';
+                }
+            }
+            
+            function showResults() {
+                quizQuestions.style.display = 'none';
+                quizResults.style.display = 'block';
+                scoreElement.textContent = `Anda mendapat ${score} daripada ${questions.length} soalan betul.`;
+                
+                // Add encouraging message based on score
+                let message = '';
+                if (score === questions.length) {
+                    message = 'Tahniah! Anda sangat memahami gaya hidup digital.';
+                } else if (score >= questions.length / 2) {
+                    message = 'Bagus! Anda mempunyai pengetahuan asas yang kukuh.';
+                } else {
+                    message = 'Jangan putus asa! Teruskan belajar tentang gaya hidup digital.';
+                }
+                
+                const messageElement = document.createElement('p');
+                messageElement.textContent = message;
+                messageElement.style.marginTop = '1rem';
+                messageElement.style.fontStyle = 'italic';
+                scoreElement.appendChild(messageElement);
+            }
+
+            // ===== SMOOTH SCROLLING =====
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ===== NAVBAR SCROLL EFFECT =====
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                    navbar.style.padding = '0.5rem 0';
+                } else {
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                    navbar.style.padding = '1rem 0';
+                }
+            });
+
+            // Initialize with navbar style
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
