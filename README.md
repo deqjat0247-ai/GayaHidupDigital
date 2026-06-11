@@ -1,2 +1,0 @@
-# hzrn
-my new project
